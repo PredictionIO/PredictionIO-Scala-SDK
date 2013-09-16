@@ -9,7 +9,7 @@ that make use of the PredictionIO Java SDK's client library. We envision
 building a thin layer of DSL on top of the Java library when we have enough
 resource. Contributions are always welcome! :)
 
-Before running any example, make sure you have an app created in PredictionIO,
+Before running any example, make sure you have an app added in PredictionIO,
 and have the app key handy.
 
 To run the data import example,
