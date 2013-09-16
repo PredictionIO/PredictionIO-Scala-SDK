@@ -10,7 +10,8 @@ building a thin layer of DSL on top of the Java library when we have enough
 resource. Contributions are always welcome! :)
 
 Before running any example, make sure you have an app added in PredictionIO,
-and have the app key handy.
+and have the app key handy. You will also need [sbt](http://www.scala-sbt.org/)
+to compile examples.
 
 To run the data import example,
 
@@ -25,6 +26,6 @@ in tab-separted format, e.g.
     dave  steak   4
     mary  fish    2
 
-Notice ratings should be integers between 1 and 5. The MovieLens 100k Data Set
-(http://www.grouplens.org/node/73) is a perfect sample data set if you do not
-have your own to try.
+Notice ratings should be integers between 1 and 5. The
+[MovieLens 100k Data Set](http://www.grouplens.org/node/73) is a perfect
+sample data set if you do not have your own to try.
