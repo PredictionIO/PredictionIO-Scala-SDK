@@ -1,6 +1,6 @@
 name := "predictionio-scala-import"
 
-version := "0.0.1-SNAPSHOT"
+version := "0.1.0"
 
 organization := "io.prediction"
 

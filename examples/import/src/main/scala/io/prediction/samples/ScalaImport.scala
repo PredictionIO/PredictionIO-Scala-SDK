@@ -27,7 +27,7 @@ object ScalaImport {
 
   def main(args: Array[String]) {
     val parser = new scopt.OptionParser[ScalaImportConfig]("scala-import") {
-      head("PredictionIO Data Import Tool in Scala", "0.0.1-SNAPSHOT")
+      head("PredictionIO Data Import Tool in Scala", "0.1.0")
       help("help") text("prints this usage text")
       arg[String]("<app key>") action { (x, c) =>
         c.copy(appkey = x)
