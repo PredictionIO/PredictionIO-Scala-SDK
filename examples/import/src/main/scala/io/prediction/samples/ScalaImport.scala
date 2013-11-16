@@ -57,7 +57,7 @@ object ScalaImport {
         /** Get API status */
         println(client.getStatus())
 
-        for (line <- scala.io.Source.fromFile(scalaImportConfig.inputFile).getLines()) {
+        scala.io.Source.fromFile(scalaImportConfig.inputFile).getLines().foreach { line =>
           /** Throttling */
           while (q.size() > MaxRequests) {
             Thread.sleep(1)
@@ -93,14 +93,14 @@ object ScalaImport {
 
         /** Add User and Item IDs asynchronously */
         println(s"Sending ${uids.size} create User ID requests")
-        for (uid <- uids) {
+        uids.foreach { uid =>
           q.put(client.createUserAsFuture(client.getCreateUserRequestBuilder(uid)))
           totalSent += 1
         }
 
         println(s"Sending ${iids.size} create Item ID requests")
         val itypes = Array("movies")
-        for (iid <- iids) {
+        iids.foreach { iid =>
           q.put(
             client.createItemAsFuture(
               client.getCreateItemRequestBuilder(iid, itypes)
