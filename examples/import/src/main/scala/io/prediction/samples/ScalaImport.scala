@@ -50,7 +50,7 @@ object ScalaImport {
       val q = new LinkedBlockingQueue[FutureAPIResponse]()
 
       /** Start the consumer thread to synchronize sent requests */
-      new Thread(new FutureExaminer(q)).start()
+      FutureExaminer(q)
 
       /** Read input MovieLens data and send requests to API */
       try {
@@ -125,8 +125,11 @@ object ScalaImport {
   }
 
   /** A simple consumer examining the HTTP request result code */
-  class FutureExaminer(q: BlockingQueue[FutureAPIResponse]) extends Runnable {
-    def run() {
+  object FutureExaminer {
+    import scala.concurrent._
+    import ExecutionContext.Implicits.global
+
+    def apply(q: BlockingQueue[FutureAPIResponse]) = future {
       var consumed = 0
       while (!(allSent && consumed != totalSent)) {
         val result = q.take
