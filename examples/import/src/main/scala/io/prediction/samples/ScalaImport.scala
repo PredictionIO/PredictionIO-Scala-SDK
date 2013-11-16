@@ -23,7 +23,7 @@ object ScalaImport {
   var totalSent = 0
 
   /** Maximum number of requests allowed in memory */
-  val maxRequests = 1000
+  val MaxRequests = 1000
 
   def main(args: Array[String]) {
     val parser = new scopt.OptionParser[ScalaImportConfig]("scala-import") {
@@ -59,7 +59,7 @@ object ScalaImport {
 
         for (line <- scala.io.Source.fromFile(scalaImportConfig.inputFile).getLines()) {
           /** Throttling */
-          while (q.size() > maxRequests) {
+          while (q.size() > MaxRequests) {
             Thread.sleep(1)
           }
 
