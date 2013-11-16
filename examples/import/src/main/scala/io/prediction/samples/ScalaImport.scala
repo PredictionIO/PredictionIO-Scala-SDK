@@ -63,13 +63,8 @@ object ScalaImport {
             Thread.sleep(1)
           }
 
-          /** Break the line up */
-          val st = line.split("\t")
-
           /** The 1st field is User ID, the 2nd field is Item ID, and the 3rd field is rating */
-          val uid = st(0)
-          val iid = st(1)
-          val rate = st(2).toInt
+          val (uid :: iid :: rate :: _) = line.split('\t').toList
 
           /** Save User IDs and Item IDs for adding later */
           uids.add(uid)
@@ -85,7 +80,7 @@ object ScalaImport {
           q.put(client.userActionItemAsFuture(client.getUserActionItemRequestBuilder("like", iid)))
           q.put(client.userActionItemAsFuture(client.getUserActionItemRequestBuilder("dislike", iid)))
           q.put(client.userActionItemAsFuture(client.getUserActionItemRequestBuilder("conversion", iid)))
-          q.put(client.userActionItemAsFuture(client.getUserActionItemRequestBuilder("rate", iid).rate(rate)))
+          q.put(client.userActionItemAsFuture(client.getUserActionItemRequestBuilder("rate", iid).rate(rate.toInt)))
 
           /** Increase counter */
           totalSent += 5
